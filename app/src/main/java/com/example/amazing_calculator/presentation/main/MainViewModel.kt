@@ -5,7 +5,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.amazing_calculator.domain.HistoryRepository
 import com.example.amazing_calculator.domain.SettingsDao
+import com.example.amazing_calculator.domain.entity.HistoryItem
 import kotlinx.coroutines.launch
 import java.lang.Math.pow
 import java.lang.Math.round
@@ -14,7 +16,8 @@ import kotlin.math.pow
 
 
 class MainViewModel(
-    private val settingsDao: SettingsDao
+    private val settingsDao: SettingsDao,
+    private val historyRepository: HistoryRepository
 ): ViewModel() {
 
     private var outputExpression: String = ""
@@ -135,9 +138,19 @@ class MainViewModel(
         else {
             val pred: Boolean? = sliderRoundState.value?.let{abs(result.toFloat() - result.toFloat().toInt()) > 10f.pow(-it)}
             if(pred != null && pred)
+            {
                 _outputExpressionState.value = "= " + formattingString.format(result.toFloat())
+                viewModelScope.launch{
+                    historyRepository.add(HistoryItem(field.getText().toString(), _outputExpressionState.value!!))
+                }
+            }
             else
+            {
                 _outputExpressionState.value = "= " + result.toFloat().toInt().toString()
+                viewModelScope.launch{
+                    historyRepository.add(HistoryItem(field.getText().toString(), _outputExpressionState.value!!))
+                }
+            }
         }
     }
 

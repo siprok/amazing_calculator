@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.amazing_calculator.R
 import com.example.amazing_calculator.databinding.MainActivityBinding
+import com.example.amazing_calculator.di.HistoryRepositoryProvider
 import com.example.amazing_calculator.di.SettingsDaoProvider
 import com.example.amazing_calculator.presentation.history.HistoryActivity
 import com.example.amazing_calculator.presentation.settings.SettingsActivity
@@ -25,7 +26,8 @@ class MainActivity : AppCompatActivity()
     private val viewModel  by viewModels<MainViewModel>{
         object: ViewModelProvider.Factory{
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return MainViewModel(SettingsDaoProvider.getDao(this@MainActivity))as T
+                return MainViewModel(SettingsDaoProvider.getDao(this@MainActivity),
+                    HistoryRepositoryProvider.get(this@MainActivity))as T
             }
         }
     }
@@ -127,6 +129,8 @@ class MainActivity : AppCompatActivity()
         viewModel.outputExpressionState.observe(this) {state ->
             viewBinding.expressionOutput.text = state
         }
+
+
 
         viewModel.sliderRoundState.observe(this) {state ->
             val result = viewBinding.expressionOutput.text.toString()

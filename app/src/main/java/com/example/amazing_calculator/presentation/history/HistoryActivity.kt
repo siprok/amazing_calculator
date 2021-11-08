@@ -21,6 +21,10 @@ class HistoryActivity: AppCompatActivity() {
             adapter = historyAdapter
         }
 
+        viewModel.closeWithResult.observe(this){ state ->
+
+        }
+
         viewModel.historyItemsState.observe(this){state ->
             historyAdapter.setData(state)
         }
