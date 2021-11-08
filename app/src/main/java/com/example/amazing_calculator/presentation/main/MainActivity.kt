@@ -13,6 +13,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.amazing_calculator.R
 import com.example.amazing_calculator.databinding.MainActivityBinding
 import com.example.amazing_calculator.di.SettingsDaoProvider
+import com.example.amazing_calculator.presentation.history.HistoryActivity
 import com.example.amazing_calculator.presentation.settings.SettingsActivity
 import com.example.amazing_calculator.presentation.settings.SettingsViewModel
 import java.lang.Math.round
@@ -37,18 +38,6 @@ class MainActivity : AppCompatActivity()
             showSoftInputOnFocus = false
         }
 
-    fun showCustomDialog(){
-        /*
-        val view = getLayoutInflater().inflate(R.layout.settings_activity, null)
-        AlertDialog.Builder(this)
-            .setView(view)
-            .show()
-        */
-        val intent  = Intent(this, SettingsActivity::class.java)
-        startActivity(intent)
-
-        }
-
         val vibrator = this.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
         listOf(
@@ -64,71 +53,75 @@ class MainActivity : AppCompatActivity()
             viewBinding.buttonNine
         ).forEachIndexed { index, button ->
             button.setOnClickListener {
-                viewModel.sliderVibrateState.value?.let{vibrator.vibrate(it.toLong())}
+                viewModel.sliderVibrateState.value?.let{vibrator.vibrate(it.toLong() + 1)}
                 viewModel.onNumberClick(index, viewBinding.expressionInput)
             }
         }
 
         viewBinding.buttonEqual.setOnClickListener {
-            viewModel.sliderVibrateState.value?.let{vibrator.vibrate(it.toLong())}
+            viewModel.sliderVibrateState.value?.let{vibrator.vibrate(it.toLong() + 1)}
             viewModel.onEqualClick(viewBinding.expressionInput)
         }
         viewBinding.buttonBackspace.setOnClickListener {
-            viewModel.sliderVibrateState.value?.let{vibrator.vibrate(it.toLong())}
+            viewModel.sliderVibrateState.value?.let{vibrator.vibrate(it.toLong() + 1)}
             viewModel.onBackspaceClick(viewBinding.expressionInput)
         }
         viewBinding.buttonCleaner.setOnClickListener {
-            viewModel.sliderVibrateState.value?.let{vibrator.vibrate(it.toLong())}
+            viewModel.sliderVibrateState.value?.let{vibrator.vibrate(it.toLong() + 1)}
             viewModel.onCleanerClick(viewBinding.expressionInput)
         }
         viewBinding.buttonCleanMemory.setOnClickListener {
-            viewModel.sliderVibrateState.value?.let{vibrator.vibrate(it.toLong())}
+            viewModel.sliderVibrateState.value?.let{vibrator.vibrate(it.toLong() + 1)}
             viewModel.onCleanerMemoryClick()
         }
         viewBinding.buttonMemory.setOnClickListener {
-            viewModel.sliderVibrateState.value?.let{vibrator.vibrate(it.toLong())}
+            viewModel.sliderVibrateState.value?.let{vibrator.vibrate(it.toLong() + 1)}
             viewModel.onMemoryClick()
         }
         viewBinding.buttonPoint.setOnClickListener {
-            viewModel.sliderVibrateState.value?.let{vibrator.vibrate(it.toLong())}
+            viewModel.sliderVibrateState.value?.let{vibrator.vibrate(it.toLong() + 1)}
             viewModel.onSymbolClick(viewBinding.buttonPoint.text.toString(), viewBinding.expressionInput)
         }
         viewBinding.buttonPlus.setOnClickListener {
-            viewModel.sliderVibrateState.value?.let{vibrator.vibrate(it.toLong())}
+            viewModel.sliderVibrateState.value?.let{vibrator.vibrate(it.toLong() + 1)}
             viewModel.onSymbolClick(viewBinding.buttonPlus.text.toString(), viewBinding.expressionInput)
         }
         viewBinding.buttonMinus.setOnClickListener {
-            viewModel.sliderVibrateState.value?.let{vibrator.vibrate(it.toLong())}
+            viewModel.sliderVibrateState.value?.let{vibrator.vibrate(it.toLong() + 1)}
             viewModel.onSymbolClick(viewBinding.buttonMinus.text.toString(), viewBinding.expressionInput)
         }
         viewBinding.buttonMul.setOnClickListener {
-            viewModel.sliderVibrateState.value?.let{vibrator.vibrate(it.toLong())}
+            viewModel.sliderVibrateState.value?.let{vibrator.vibrate(it.toLong() + 1)}
             viewModel.onSymbolClick(viewBinding.buttonMul.text.toString(), viewBinding.expressionInput)
         }
         viewBinding.buttonDiv.setOnClickListener {
-            viewModel.sliderVibrateState.value?.let{vibrator.vibrate(it.toLong())}
+            viewModel.sliderVibrateState.value?.let{vibrator.vibrate(it.toLong() + 1)}
             viewModel.onSymbolClick(viewBinding.buttonDiv.text.toString(),viewBinding.expressionInput)
         }
         viewBinding.buttonSqrt.setOnClickListener {
-            viewModel.sliderVibrateState.value?.let{vibrator.vibrate(it.toLong())}
+            viewModel.sliderVibrateState.value?.let{vibrator.vibrate(it.toLong() + 1)}
             viewModel.onSqrtClick(viewBinding.expressionInput)
         }
         viewBinding.buttonPow.setOnClickListener {
-            viewModel.sliderVibrateState.value?.let{vibrator.vibrate(it.toLong())}
+            viewModel.sliderVibrateState.value?.let{vibrator.vibrate(it.toLong() + 1)}
             viewModel.onSymbolClick(viewBinding.buttonPow.text.toString(), viewBinding.expressionInput)
         }
         viewBinding.buttonLeftBracket.setOnClickListener {
-            viewModel.sliderVibrateState.value?.let{vibrator.vibrate(it.toLong())}
+            viewModel.sliderVibrateState.value?.let{vibrator.vibrate(it.toLong() + 1)}
             viewModel.onLeftBracketClick(viewBinding.expressionInput)
         }
         viewBinding.buttonRightBracket.setOnClickListener {
-            viewModel.sliderVibrateState.value?.let{vibrator.vibrate(it.toLong())}
+            viewModel.sliderVibrateState.value?.let{vibrator.vibrate(it.toLong() + 1)}
             viewModel.onRightBracketClick(viewBinding.expressionInput)
         }
 
         viewBinding.buttonSettigns.setOnClickListener{
-            viewModel.sliderVibrateState.value?.let{vibrator.vibrate(it.toLong())}
-            showCustomDialog()
+            viewModel.sliderVibrateState.value?.let{vibrator.vibrate(it.toLong() + 1)}
+            showSettings()
+        }
+
+        viewBinding.buttonHistory.setOnClickListener {
+            showHistory()
         }
 
         viewModel.outputExpressionState.observe(this) {state ->
@@ -146,6 +139,21 @@ class MainActivity : AppCompatActivity()
                 viewBinding.expressionOutput.text = "= " + result.toInt().toString()
         }
 
+    }
+
+    fun showSettings(){
+        /*
+        val view = getLayoutInflater().inflate(R.layout.settings_activity, null)
+        AlertDialog.Builder(this)
+            .setView(view)
+            .show()
+        */
+        startActivity(Intent(this, SettingsActivity::class.java))
+    }
+
+    fun showHistory()
+    {
+        startActivity(Intent(this, HistoryActivity::class.java))
     }
 
     override fun onStart() {

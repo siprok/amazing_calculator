@@ -31,12 +31,15 @@ fun evaluatedFormatter(evaluated: String): String =
     }
     else
     {
+        " Ошибка"
+        /*
         when(evaluated.split(": ")[0])
         {
             "KevalZeroDivisionException" -> "Пристутствует деление на ноль"
             "KevalInvalidSymbolException" -> "Ошибка в написании оператора"
-            else -> " "
+            else -> " Ошибка"
         }
+         */
     }
 
 

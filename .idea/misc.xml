@@ -3,8 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/ic_arrow_back_ios_24.xml" value="0.1648148148148148" />
         <entry key="app/src/main/res/drawable/ic_backspace_24.xml" value="0.278125" />
+        <entry key="app/src/main/res/layout/history_activity.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/history_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/main_activity.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/main_duplicate.xml" value="0.25" />
         <entry key="app/src/main/res/layout/settings_activity.xml" value="0.25" />
       </map>
     </option>
