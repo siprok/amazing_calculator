@@ -1,42 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-    <EditText
+    <TextView
         android:id="@+id/history"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:text="output placement"
+        tools:text="output placement"
         android:layout_above="@id/expression_input"
         android:background="@color/purple_200"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="2.5dp"
         android:layout_marginLeft="6dp"
         android:layout_marginRight="6dp"
+        android:gravity="end|center_vertical"
         />
 
     <EditText
         android:id="@+id/expression_input"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/button_cleaner"
-        android:text="input expression"
-        android:background="@color/teal_200"
-        android:layout_marginTop="2.5dp"
-        android:layout_marginBottom="2.5dp"
+        android:layout_height="64dp"
+        android:layout_above="@id/expression_output"
         android:layout_marginLeft="6dp"
+        android:layout_marginTop="2.5dp"
         android:layout_marginRight="6dp"
+        android:layout_marginBottom="2.5dp"
+        android:background="@color/design_default_color_secondary_variant"
+        android:gravity="end|center_vertical"
+        android:textSize="26sp"
+        tools:text="input expression"
 
+        />
+
+    <TextView
+        android:id="@+id/expression_output"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_above="@id/button_pow"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="2.5dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginBottom="2.5dp"
+        android:background="@color/teal_200"
+        android:gravity="end|center_vertical"
+        android:textSize="26sp"
+        tools:text="output expression"
+
+        />
+    <!--Settings buttons-->
+    <ImageView
+        android:id="@+id/button_settigns"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/history"
+        android:layout_alignTop="@id/history"
+        android:padding="10dp"
+        app:srcCompat="@drawable/ic_settings_24"
         />
     <!--Button section start-->
 
+    <Button
+        android:id="@+id/button_pow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/button_div"
+        android:layout_alignStart="@id/button_point"
+        android:layout_alignEnd="@id/button_point"
+        android:layout_marginTop="3.0dp"
+        android:layout_marginBottom="3.0dp"
+        android:padding="20dp"
+        android:text="^" />
 
     <Button
-        android:id="@+id/button_cleaner"
-        android:text="C"
+        android:id="@+id/button_sqrt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/button_div"
+        android:layout_alignStart="@id/button_zero"
+        android:layout_alignEnd="@id/button_zero"
+        android:layout_marginTop="3.0dp"
+        android:layout_marginBottom="3.0dp"
+        android:padding="20dp"
+        android:text="√" />
+
+    <Button
+        android:id="@+id/button_left_bracket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/button_plus"
+        android:layout_alignStart="@id/button_equal"
+        android:layout_alignEnd="@id/button_equal"
+        android:layout_marginTop="3.0dp"
+        android:layout_marginBottom="3.0dp"
+        android:padding="20dp"
+        android:text="(" />
+
+    <Button
+        android:id="@+id/button_right_bracket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/button_minus"
+        android:layout_alignStart="@id/button_memory"
+        android:layout_alignEnd="@id/button_memory"
+        android:layout_marginTop="3.0dp"
+        android:layout_marginBottom="3.0dp"
+        android:padding="20dp"
+        android:text=")" />
+
+    <Button
+        android:id="@+id/button_mul"
+        android:text="*"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@id/button_point"
@@ -46,42 +123,45 @@
         android:layout_marginBottom="3.0dp"
         android:padding="20dp"
         />
+
     <Button
-        android:id="@+id/button_sqrt"
-        android:text="√"
+        android:id="@+id/button_div"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@id/button_eight"
         android:layout_alignStart="@id/button_zero"
         android:layout_alignEnd="@id/button_zero"
-        android:layout_above="@id/button_eight"
         android:layout_marginTop="3.0dp"
         android:layout_marginBottom="3.0dp"
         android:padding="20dp"
-        />
+        android:text="/" />
+
     <Button
-        android:id="@+id/button_pow"
-        android:text="^"
+        android:id="@+id/button_plus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@id/button_nine"
         android:layout_alignStart="@id/button_equal"
         android:layout_alignEnd="@id/button_equal"
-        android:layout_above="@id/button_nine"
         android:layout_marginTop="3.0dp"
         android:layout_marginBottom="3.0dp"
         android:padding="20dp"
-        />
+        android:text="+" />
+
     <Button
-        android:id="@+id/button_backspace"
-        android:text="<-"
+        android:id="@+id/button_minus"
+        android:text="-"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@id/button_plus"
-        android:layout_alignEnd="@id/button_plus"
-        android:layout_above="@id/button_div"
+        android:layout_alignStart="@id/button_memory"
+        android:layout_alignEnd="@id/button_memory"
+        android:layout_alignTop="@id/button_mul"
+        android:layout_above="@id/button_backspace"
         android:layout_marginTop="3.0dp"
         android:layout_marginBottom="3.0dp"
         android:padding="20dp"
         />
+
     <Button
         android:id="@+id/button_seven"
         android:text="7"
@@ -94,42 +174,46 @@
         android:layout_marginBottom="3.0dp"
         android:padding="20dp"
         />
+
     <Button
         android:id="@+id/button_eight"
-        android:text="8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@id/button_five"
         android:layout_alignStart="@id/button_zero"
         android:layout_alignEnd="@id/button_zero"
-        android:layout_above="@id/button_five"
         android:layout_marginTop="3.0dp"
         android:layout_marginBottom="3.0dp"
         android:padding="20dp"
-        />
+        android:text="8" />
+
     <Button
         android:id="@+id/button_nine"
-        android:text="9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@id/button_six"
         android:layout_alignStart="@id/button_equal"
         android:layout_alignEnd="@id/button_equal"
-        android:layout_above="@id/button_six"
         android:layout_marginTop="3.0dp"
         android:layout_marginBottom="3.0dp"
         android:padding="20dp"
-        />
-    <Button
-        android:id="@+id/button_div"
-        android:text="/"
+        android:text="9" />
+
+    <ImageButton
+        android:id="@+id/button_backspace"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@id/button_plus"
-        android:layout_alignEnd="@id/button_plus"
-        android:layout_above="@id/button_mult"
+        android:layout_above="@id/button_cleaner"
+        android:layout_alignStart="@id/button_memory"
+        android:layout_alignTop="@id/button_seven"
+        android:layout_alignEnd="@id/button_memory"
+        android:backgroundTint="@color/purple_500"
+        android:src="@drawable/ic_backspace_24"
         android:layout_marginTop="3.0dp"
         android:layout_marginBottom="3.0dp"
         android:padding="20dp"
-        />
+        app:tint="@color/white" />
+
     <Button
         android:id="@+id/button_four"
         android:text="4"
@@ -166,18 +250,18 @@
         android:layout_marginBottom="3.0dp"
         android:padding="20dp"
         />
+
     <Button
-        android:id="@+id/button_mult"
-        android:text="*"
+        android:id="@+id/button_cleaner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@id/button_plus"
-        android:layout_alignEnd="@id/button_plus"
-        android:layout_above="@id/button_minus"
+        android:layout_above="@id/button_clean_memory"
+        android:layout_alignStart="@id/button_memory"
+        android:layout_alignEnd="@id/button_memory"
         android:layout_marginTop="3.0dp"
         android:layout_marginBottom="3.0dp"
         android:padding="20dp"
-        />
+        android:text="C" />
     <Button
         android:id="@+id/button_one"
         android:text="1"
@@ -214,18 +298,18 @@
         android:layout_marginBottom="3.0dp"
         android:padding="20dp"
         />
+
     <Button
-        android:id="@+id/button_minus"
-        android:text="-"
+        android:id="@+id/button_clean_memory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@id/button_plus"
-        android:layout_alignEnd="@id/button_plus"
-        android:layout_above="@id/button_plus"
+        android:layout_above="@id/button_memory"
+        android:layout_alignStart="@id/button_memory"
+        android:layout_alignEnd="@id/button_memory"
         android:layout_marginTop="3.0dp"
         android:layout_marginBottom="3.0dp"
         android:padding="20dp"
-        />
+        android:text="CM" />
     <Button
         android:id="@+id/button_point"
         android:text="."
@@ -265,18 +349,18 @@
         android:layout_marginBottom="6dp"
         android:padding="20dp"
         />
+
     <Button
-        android:id="@+id/button_plus"
-        android:text="+"
+        android:id="@+id/button_memory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@id/button_point"
-        android:layout_toEndOf="@id/button_equal"
         android:layout_marginLeft="6.0dp"
-        android:layout_marginRight="6.0dp"
         android:layout_marginTop="3.0dp"
+        android:layout_marginRight="6.0dp"
         android:layout_marginBottom="6dp"
+        android:layout_toEndOf="@id/button_equal"
         android:padding="20dp"
-        />
+        android:text="M" />
     <!-- Button section end-->
 </RelativeLayout>
